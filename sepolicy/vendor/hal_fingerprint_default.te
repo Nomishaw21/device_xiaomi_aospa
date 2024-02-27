@@ -1,0 +1,42 @@
+typeattribute hal_fingerprint_default data_between_core_and_vendor_violators;
+
+# Binder
+allow hal_fingerprint_default vendor_hal_perf_default:binder call;
+allow hal_fingerprint_default vendor_hal_perf_hwservice:hwservice_manager find;
+
+# Data
+allow hal_fingerprint_default fingerprint_data_file:dir rw_dir_perms;
+allow hal_fingerprint_default fingerprint_data_file:file create_file_perms;
+
+allow hal_fingerprint_default system_prop:property_service { set };
+allow hal_fingerprint_default exported_system_prop:property_service { set };
+
+# Dev nodes
+allow hal_fingerprint_default {
+  fingerprint_device
+  input_device
+  tee_device
+  uhid_device
+}: chr_file rw_file_perms;
+
+allow hal_fingerprint_default self:netlink_socket create_socket_perms_no_ioctl;
+
+# Sysfs
+allow hal_fingerprint_default {
+  input_device
+  sysfs_rtc
+  vendor_sysfs_fingerprint
+  vendor_sysfs_spss
+}: dir r_dir_perms;
+
+allow hal_fingerprint_default {
+  sysfs_rtc
+  vendor_sysfs_fingerprint
+  vendor_sysfs_spss
+}: file rw_file_perms;
+
+allow hal_fingerprint_default sysfs_leds:dir search;
+r_dir_file(hal_fingerprint_default, firmware_file)
+
+# Props
+set_prop(hal_fingerprint_default, vendor_fingerprint_prop)
