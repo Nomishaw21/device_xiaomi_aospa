@@ -229,11 +229,11 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Init scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/bin/init.kernel.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.kernel.post_boot.sh \
-    $(LOCAL_PATH)/rootdir/bin/init.marble.perf.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.marble.perf.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.marble.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.marble.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.marble.perf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.marble.perf.rc \
+    $(LOCAL_PATH)/rootdir/bin/init.stone.perf.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.stone.perf.sh \
+    $(LOCAL_PATH)/rootdir/etc/init.stone.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.stone.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.stone.perf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.stone.perf.rc \
     $(LOCAL_PATH)/rootdir/etc/init.target.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.target.rc \
-    $(LOCAL_PATH)/rootdir/etc/ueventd.marble.rc:$(TARGET_COPY_OUT_ODM)/etc/ueventd.rc
+    $(LOCAL_PATH)/rootdir/etc/ueventd.stone.rc:$(TARGET_COPY_OUT_ODM)/etc/ueventd.rc
 
 # FM
 PRODUCT_PACKAGES += \
@@ -322,50 +322,29 @@ PRODUCT_PACKAGES += \
     NotchBarKiller
 
 # Overlays
+PRODUCT_PACKAGES += \
+    NfcOverlay \
+    AOSPAStoneFrameworksOverlay \
+    AOSPAStoneSettingsOverlay \
+    AOSPAStoneSystemUIOverlay 
+
+# Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-lineage \
+    $(LOCAL_PATH)/NfcOverlay \
+    $(LOCAL_PATH)/FrameworksResOverlayStone \
+    $(LOCAL_PATH)/SettingsOverlayStone \
+    $(LOCAL_PATH)/SystemUIOverlayStone \
+    $(LOCAL_PATH)/StoneCNSettingsProviderOverlay \
+    $(LOCAL_PATH)/StoneCNWifiOverlay \
+    $(LOCAL_PATH)/StoneGLSettingsProviderOverlay\
+    $(LOCAL_PATH)/StoneGLWifiOverlay \
+    $(LOCAL_PATH)/StoneINSettingsProviderOverlay \
+    $(LOCAL_PATH)/StoneINWifiOverlay
 
-# RRO Overlays
-PRODUCT_PACKAGES += \
-    NfcOverlay \
-    FrameworksResOverlayStone \
-    SettingsOverlayStone \
-    SystemUIOverlayStone \
-    StoneCNSettingsProviderOverlay \
-    StoneCNWifiOverlay \
-    StoneGLSettingsProviderOverlay\
-    StoneGLWifiOverlay \
-    StoneINSettingsProviderOverlay \
-    StoneINWifiOverlay
-    AOSPAMarbleFrameworksOverlay \
-    AOSPAMarbleSettingsOverlay \
-    AOSPAMarbleSystemUIOverlay \
-    AvoidAppsInCutoutOverlay \
-    MarbleApertureOverlay \
-    MarbleCNSettingsOverlay \
-    MarbleCNSettingsProviderOverlay \
-    MarbleCNWifiOverlay \
-    MarbleCNWifiMainlineOverlay \
-    MarbleCarrierConfigOverlay \
-    MarbleFrameworksOverlay \
-    MarbleGLSettingsOverlay \
-    MarbleGLSettingsProviderOverlay \
-    MarbleGLWifiOverlay \
-    MarbleGLWifiMainlineOverlay \
-    MarbleINSettingsOverlay \
-    MarbleINSettingsProviderOverlay \
-    MarbleINWifiOverlay \
-    MarbleINWifiMainlineOverlay \
-    MarbleNfcOverlay \
-    MarbleSettingsOverlay \
-    MarbleSystemUIOverlay \
-    MarbleWifiOverlay \
-    MarbleWifiMainlineOverlay \
-    NoCutoutOverlay
-
-# Partitions
+#partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Perf
