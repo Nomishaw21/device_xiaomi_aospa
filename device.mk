@@ -344,6 +344,13 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/StoneINSettingsProviderOverlay \
     $(LOCAL_PATH)/StoneINWifiOverlay
 
+# ParanoidDoze
+PRODUCT_PACKAGES += \
+    ParanoidDoze
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.sensor.pickup=xiaomi.sensor.pickup
+
 #partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
